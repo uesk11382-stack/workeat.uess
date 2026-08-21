@@ -1,14 +1,2450 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; url=//script.google.com/macros/s/AKfycbxm7BnZFO89dU-8U_pFCGfEydmAc7hXV5p3JJXmqNZHZlySPptGcFhSd2hbSSs0Q-Bf/exec">
-    <title>Redirecting...</title>
-    <noscript>
-      <p>Если страница не перенаправилась автоматически, <a href="//script.google.com/macros/s/AKfycbxm7BnZFO89dU-8U_pFCGfEydmAc7hXV5p3JJXmqNZHZlySPptGcFhSd2hbSSs0Q-Bf/exec">">нажмите здесь</a>.</p>
-    </noscript>
-  </head>
-  <body>
-    <p>Перенаправление...</p>
-  </body>
+<html lang="ru">
+
+<head>
+
+  <base target="_top">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Панель повара</title>
+
+
+  <style>
+
+    :root {
+
+      --green:
+        #476b57;
+
+      --green-dark:
+        #365442;
+
+      --green-light:
+        #e8eee9;
+
+      --beige:
+        #f4efe5;
+
+      --cream:
+        #fbf8f1;
+
+      --text:
+        #29352d;
+
+      --muted:
+        #718077;
+
+      --border:
+        #d8ded8;
+
+      --red:
+        #a84c46;
+
+      --red-light:
+        #f5e5e3;
+
+      --white:
+        #ffffff;
+
+      --shadow:
+        0 8px 28px rgba(
+          55,
+          75,
+          61,
+          0.08
+        );
+
+    }
+
+
+    * {
+      box-sizing:
+        border-box;
+    }
+
+
+    html {
+      background:
+        var(--beige);
+    }
+
+
+    body {
+
+      margin:
+        0;
+
+      min-height:
+        100vh;
+
+      background:
+        var(--beige);
+
+      color:
+        var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      padding:
+        env(safe-area-inset-top)
+        env(safe-area-inset-right)
+        env(safe-area-inset-bottom)
+        env(safe-area-inset-left);
+
+    }
+
+
+    .app {
+
+      width:
+        100%;
+
+      max-width:
+        760px;
+
+      margin:
+        0 auto;
+
+      padding:
+        20px 16px 40px;
+
+    }
+
+
+    .header {
+
+      padding:
+        12px 4px 20px;
+
+    }
+
+
+    .header-title {
+
+      font-size:
+        26px;
+
+      font-weight:
+        700;
+
+      letter-spacing:
+        -0.4px;
+
+    }
+
+
+    .header-subtitle {
+
+      margin-top:
+        5px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+    }
+
+
+    .card {
+
+      background:
+        var(--cream);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
+
+      box-shadow:
+        var(--shadow);
+
+      padding:
+        20px;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    #loginScreen {
+
+      min-height:
+        90vh;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+    }
+
+
+    .login-card {
+
+      width:
+        100%;
+
+      max-width:
+        420px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .cook-icon {
+
+      width:
+        64px;
+
+      height:
+        64px;
+
+      margin:
+        0 auto 16px;
+
+      border-radius:
+        20px;
+
+      background:
+        var(--green);
+
+      color:
+        white;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        30px;
+
+    }
+
+
+    .login-title {
+
+      font-size:
+        24px;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        8px;
+
+    }
+
+
+    .login-text {
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.5;
+
+      margin-bottom:
+        20px;
+
+    }
+
+
+    input,
+    select {
+
+      width:
+        100%;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      padding:
+        14px;
+
+      font-size:
+        16px;
+
+      background:
+        white;
+
+      color:
+        var(--text);
+
+      outline:
+        none;
+
+    }
+
+
+    input:focus,
+    select:focus {
+
+      border-color:
+        var(--green);
+
+    }
+
+
+    .button {
+
+      width:
+        100%;
+
+      border:
+        0;
+
+      border-radius:
+        13px;
+
+      padding:
+        14px 18px;
+
+      font-size:
+        15px;
+
+      font-weight:
+        700;
+
+      cursor:
+        pointer;
+
+      transition:
+        .15s ease;
+
+    }
+
+
+    .button:disabled {
+
+      opacity:
+        .55;
+
+      cursor:
+        default;
+
+    }
+
+
+    .button-primary {
+
+      background:
+        var(--green);
+
+      color:
+        white;
+
+    }
+
+
+    .button-primary:active {
+
+      background:
+        var(--green-dark);
+
+      transform:
+        scale(.99);
+
+    }
+
+
+    .button-danger {
+
+      background:
+        var(--red);
+
+      color:
+        white;
+
+    }
+
+
+    .button-secondary {
+
+      background:
+        var(--green-light);
+
+      color:
+        var(--green-dark);
+
+    }
+
+
+    .error {
+
+      margin-top:
+        12px;
+
+      padding:
+        12px;
+
+      border-radius:
+        12px;
+
+      background:
+        var(--red-light);
+
+      color:
+        var(--red);
+
+      font-size:
+        14px;
+
+    }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    #mainScreen {
+      display:
+        none;
+    }
+
+
+    .toolbar {
+
+      display:
+        flex;
+
+      gap:
+        10px;
+
+      flex-wrap:
+        wrap;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .toolbar .button {
+
+      width:
+        auto;
+
+      flex:
+        1;
+
+      min-width:
+        150px;
+
+    }
+
+
+    .date-card {
+
+      background:
+        var(--green-light);
+
+      border:
+        1px solid #d4e0d7;
+
+      border-radius:
+        16px;
+
+      padding:
+        14px 16px;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .date-label {
+
+      font-size:
+        12px;
+
+      color:
+        var(--muted);
+
+      margin-bottom:
+        3px;
+
+    }
+
+
+    .date-value {
+
+      font-size:
+        18px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    /* =====================================================
+       ORDERS
+       ===================================================== */
+
+    .order-card {
+
+      background:
+        white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      padding:
+        16px;
+
+      margin-bottom:
+        12px;
+
+    }
+
+
+    .order-top {
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .employee {
+
+      font-size:
+        17px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .time {
+
+      margin-top:
+        3px;
+
+      font-size:
+        13px;
+
+      color:
+        var(--muted);
+
+    }
+
+
+    .status {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      padding:
+        6px 9px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .status-active {
+
+      background:
+        #e5eee8;
+
+      color:
+        var(--green-dark);
+
+    }
+
+
+    .status-cancelled {
+
+      background:
+        var(--red-light);
+
+      color:
+        var(--red);
+
+    }
+
+
+    .order-items {
+
+      margin:
+        14px 0;
+
+      padding:
+        12px;
+
+      background:
+        var(--cream);
+
+      border-radius:
+        12px;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    .order-bottom {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .amount {
+
+      font-size:
+        18px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .portions {
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+    }
+
+
+    .cancel-button {
+
+      width:
+        auto;
+
+      min-width:
+        150px;
+
+    }
+
+
+    .cancelled-note {
+
+      color:
+        var(--red);
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .empty {
+
+      text-align:
+        center;
+
+      padding:
+        40px 20px;
+
+      color:
+        var(--muted);
+
+    }
+
+
+    /* =====================================================
+       OPERATIONS
+       ===================================================== */
+
+    .section-title {
+
+      font-size:
+        18px;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .form-grid {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 150px;
+
+      gap:
+        10px;
+
+    }
+
+
+    .operation {
+
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+
+    }
+
+
+    .operation:first-of-type {
+
+      border-top:
+        0;
+
+    }
+
+
+    .operation-button {
+
+      margin-top:
+        10px;
+
+    }
+
+
+    .operation-result {
+
+      margin-top:
+        9px;
+
+      font-size:
+        13px;
+
+      color:
+        var(--green-dark);
+
+      min-height:
+        18px;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      text-align:
+        center;
+
+      padding:
+        35px 15px;
+
+      color:
+        var(--muted);
+
+    }
+
+
+    .spinner {
+
+      width:
+        26px;
+
+      height:
+        26px;
+
+      margin:
+        0 auto 12px;
+
+      border:
+        3px solid #dce4de;
+
+      border-top-color:
+        var(--green);
+
+      border-radius:
+        50%;
+
+      animation:
+        spin .7s linear infinite;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    @media (
+      max-width: 560px
+    ) {
+
+      .app {
+
+        padding:
+          14px 12px 30px;
+
+      }
+
+
+      .card {
+
+        padding:
+          16px;
+
+        border-radius:
+          17px;
+
+      }
+
+
+      .order-bottom {
+
+        flex-direction:
+          column;
+
+        align-items:
+          stretch;
+
+      }
+
+
+      .cancel-button {
+
+        width:
+          100%;
+
+      }
+
+
+      .form-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOGIN
+       ===================================================== -->
+
+  <div
+    id="loginScreen"
+  >
+
+    <div
+      class="app"
+    >
+
+      <div
+        class="card login-card"
+      >
+
+        <div
+          class="cook-icon"
+        >
+          👩🏻‍🍳
+        </div>
+
+
+        <div
+          class="login-title"
+        >
+          Панель повара
+        </div>
+
+
+        <div
+          class="login-text"
+        >
+          Управление заказами,
+          отменами и депозитами.
+        </div>
+
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Введите пароль"
+          autocomplete="current-password"
+          onkeydown="if(event.key==='Enter') login()"
+        >
+
+
+        <div
+          style="height:10px"
+        ></div>
+
+
+        <button
+          id="loginButton"
+          class="button button-primary"
+          onclick="login()"
+        >
+          ВОЙТИ
+        </button>
+
+
+        <div
+          id="loginError"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <div
+    id="mainScreen"
+  >
+
+    <div
+      class="app"
+    >
+
+
+      <div
+        class="header"
+      >
+
+        <div
+          class="header-title"
+        >
+          Панель повара
+        </div>
+
+        <div
+          class="header-subtitle"
+        >
+          Управление заказами и депозитами
+        </div>
+
+      </div>
+
+
+
+      <!-- DATE -->
+
+      <div
+        class="date-card"
+      >
+
+        <div
+          class="date-label"
+        >
+          МЕНЮ НА
+        </div>
+
+        <div
+          id="menuDate"
+          class="date-value"
+        >
+          —
+        </div>
+
+      </div>
+
+
+
+      <!-- TOOLBAR -->
+
+      <div
+        class="toolbar"
+      >
+
+        <button
+          class="button button-secondary"
+          onclick="loadOrders()"
+        >
+          ↻ ОБНОВИТЬ ЗАКАЗЫ
+        </button>
+
+
+        <button
+          class="button button-secondary"
+          onclick="logout()"
+        >
+          ВЫЙТИ
+        </button>
+
+      </div>
+
+
+
+      <!-- ORDERS -->
+
+      <div
+        class="card"
+      >
+
+        <div
+          class="section-title"
+        >
+          Заказы
+        </div>
+
+
+        <div
+          id="ordersContainer"
+        >
+
+          <div
+            class="loading"
+          >
+
+            <div
+              class="spinner"
+            ></div>
+
+            Загружаем заказы…
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- OPERATIONS -->
+
+      <div
+        class="card"
+      >
+
+        <div
+          class="section-title"
+        >
+          Операции с депозитом
+        </div>
+
+
+
+        <!-- POPOLNENIE -->
+
+        <div
+          class="operation"
+        >
+
+          <div
+            style="font-weight:700"
+          >
+            Пополнение
+          </div>
+
+          <div
+            style="
+              color:var(--muted);
+              font-size:13px;
+              margin:4px 0 10px;
+            "
+          >
+            Сумма добавляется к текущему депозиту
+            и к колонке «Пополнения».
+          </div>
+
+
+          <div
+            class="form-grid"
+          >
+
+            <select
+              id="depositEmployee"
+            >
+              <option value="">
+                Выберите сотрудника
+              </option>
+            </select>
+
+
+            <input
+              id="depositAmount"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="Сумма"
+            >
+
+          </div>
+
+
+          <button
+            id="depositButton"
+            class="button button-primary operation-button"
+            onclick="addDeposit()"
+          >
+            ПОПОЛНИТЬ
+          </button>
+
+
+          <div
+            id="depositResult"
+            class="operation-result"
+          ></div>
+
+        </div>
+
+
+
+        <!-- SPISANIE -->
+
+        <div
+          class="operation"
+        >
+
+          <div
+            style="font-weight:700"
+          >
+            Дополнительное списание
+          </div>
+
+          <div
+            style="
+              color:var(--muted);
+              font-size:13px;
+              margin:4px 0 10px;
+            "
+          >
+            Сумма списывается с текущего депозита
+            и добавляется в «Списания доп повар».
+          </div>
+
+
+          <div
+            class="form-grid"
+          >
+
+            <select
+              id="chargeEmployee"
+            >
+              <option value="">
+                Выберите сотрудника
+              </option>
+            </select>
+
+
+            <input
+              id="chargeAmount"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="Сумма"
+            >
+
+          </div>
+
+
+          <button
+            id="chargeButton"
+            class="button button-danger operation-button"
+            onclick="addCharge()"
+          >
+            СПИСАТЬ
+          </button>
+
+
+          <div
+            id="chargeResult"
+            class="operation-result"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    let cookToken =
+      sessionStorage.getItem(
+        'cookToken'
+      );
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      function() {
+
+        if (
+          cookToken
+        ) {
+
+          showMain();
+
+        } else {
+
+          showLogin();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    function login() {
+
+      const password =
+        document.getElementById(
+          'password'
+        ).value;
+
+
+      const button =
+        document.getElementById(
+          'loginButton'
+        );
+
+
+      const error =
+        document.getElementById(
+          'loginError'
+        );
+
+
+      if (
+        !password
+      ) {
+
+        error.innerHTML =
+          '<div class="error">Введите пароль.</div>';
+
+        return;
+
+      }
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        'ПРОВЕРКА…';
+
+
+      error.innerHTML =
+        '';
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'ВОЙТИ';
+
+
+            if (
+              result &&
+              result.success
+            ) {
+
+              cookToken =
+                result.token;
+
+
+              sessionStorage.setItem(
+                'cookToken',
+                cookToken
+              );
+
+
+              document.getElementById(
+                'password'
+              ).value =
+                '';
+
+
+              showMain();
+
+
+            } else {
+
+              error.innerHTML =
+                '<div class="error">' +
+                escapeHtml(
+                  result &&
+                  result.message
+                    ? result.message
+                    : 'Ошибка входа.'
+                ) +
+                '</div>';
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'ВОЙТИ';
+
+
+            error.innerHTML =
+              '<div class="error">' +
+              escapeHtml(
+                err.message ||
+                'Ошибка соединения.'
+              ) +
+              '</div>';
+
+          }
+        )
+
+        .cookLogin(
+          password
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW LOGIN
+       ===================================================== */
+
+    function showLogin() {
+
+      document.getElementById(
+        'loginScreen'
+      ).style.display =
+        'flex';
+
+
+      document.getElementById(
+        'mainScreen'
+      ).style.display =
+        'none';
+
+    }
+
+
+    /* =====================================================
+       SHOW MAIN
+       ===================================================== */
+
+    function showMain() {
+
+      document.getElementById(
+        'loginScreen'
+      ).style.display =
+        'none';
+
+
+      document.getElementById(
+        'mainScreen'
+      ).style.display =
+        'block';
+
+
+      loadEmployees();
+
+      loadOrders();
+
+    }
+
+
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
+
+    function logout() {
+
+      sessionStorage.removeItem(
+        'cookToken'
+      );
+
+
+      cookToken =
+        null;
+
+
+      showLogin();
+
+    }
+
+
+    /* =====================================================
+       EMPLOYEES
+       ===================================================== */
+
+    function loadEmployees() {
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(employees) {
+
+            fillEmployeeSelect(
+              'depositEmployee',
+              employees
+            );
+
+
+            fillEmployeeSelect(
+              'chargeEmployee',
+              employees
+            );
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            alert(
+              err.message ||
+              'Не удалось загрузить сотрудников.'
+            );
+
+          }
+        )
+
+        .getEmployees();
+
+    }
+
+
+    function fillEmployeeSelect(
+      id,
+      employees
+    ) {
+
+      const select =
+        document.getElementById(
+          id
+        );
+
+
+      select.innerHTML =
+        '';
+
+
+      const placeholder =
+        document.createElement(
+          'option'
+        );
+
+
+      placeholder.value =
+        '';
+
+
+      placeholder.textContent =
+        'Выберите сотрудника';
+
+
+      placeholder.disabled =
+        true;
+
+
+      placeholder.selected =
+        true;
+
+
+      select.appendChild(
+        placeholder
+      );
+
+
+      employees.forEach(
+        function(employee) {
+
+          const option =
+            document.createElement(
+              'option'
+            );
+
+
+          option.value =
+            employee.name;
+
+
+          option.textContent =
+            employee.name;
+
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       LOAD ORDERS
+       ===================================================== */
+
+    function loadOrders() {
+
+      const container =
+        document.getElementById(
+          'ordersContainer'
+        );
+
+
+      container.innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          Загружаем заказы…
+        </div>
+      `;
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result) {
+
+            renderOrders(
+              result
+            );
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            if (
+              isSessionError(
+                err
+              )
+            ) {
+
+              logout();
+
+              return;
+
+            }
+
+
+            container.innerHTML =
+              `
+              <div class="error">
+                ${escapeHtml(
+                  err.message ||
+                  'Не удалось загрузить заказы.'
+                )}
+              </div>
+              `;
+
+          }
+        )
+
+        .getCookOrders(
+          cookToken
+        );
+
+    }
+
+
+    /* =====================================================
+       RENDER ORDERS
+       ===================================================== */
+
+    function renderOrders(
+      result
+    ) {
+
+      const container =
+        document.getElementById(
+          'ordersContainer'
+        );
+
+
+      document.getElementById(
+        'menuDate'
+      ).textContent =
+        result &&
+        result.menuDate
+          ? result.menuDate
+          : '—';
+
+
+      const orders =
+        result &&
+        Array.isArray(
+          result.orders
+        )
+          ? result.orders
+          : [];
+
+
+      if (
+        orders.length === 0
+      ) {
+
+        container.innerHTML = `
+          <div class="empty">
+            На это меню заказов пока нет.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        orders
+          .map(
+            function(order) {
+
+              return renderOrder(
+                order
+              );
+
+            }
+          )
+          .join('');
+
+    }
+
+
+    /* =====================================================
+       ONE ORDER
+       ===================================================== */
+
+    function renderOrder(
+      order
+    ) {
+
+      const cancelled =
+        order.status ===
+        'Отменён';
+
+
+      const statusClass =
+        cancelled
+          ? 'status-cancelled'
+          : 'status-active';
+
+
+      const statusText =
+        cancelled
+          ? 'ОТМЕНЁН'
+          : 'АКТИВЕН';
+
+
+      let action = '';
+
+
+      if (
+        cancelled
+      ) {
+
+        action = `
+          <div class="cancelled-note">
+            Заказ отменён
+          </div>
+        `;
+
+      } else {
+
+        action = `
+          <button
+            class="button button-danger cancel-button"
+            onclick="cancelOrderConfirm(
+              ${Number(order.row)},
+              '${escapeJs(order.employee)}',
+              ${Number(order.total)}
+            )"
+          >
+            ОТМЕНИТЬ ЗАКАЗ
+          </button>
+        `;
+
+      }
+
+
+      return `
+
+        <div
+          class="order-card"
+          id="order-${Number(order.row)}"
+        >
+
+          <div class="order-top">
+
+            <div>
+
+              <div class="employee">
+                ${escapeHtml(
+                  order.employee
+                )}
+              </div>
+
+              <div class="time">
+                ${escapeHtml(
+                  order.date
+                )}
+                ·
+                ${escapeHtml(
+                  order.time
+                )}
+              </div>
+
+            </div>
+
+
+            <div
+              class="status ${statusClass}"
+            >
+              ${statusText}
+            </div>
+
+          </div>
+
+
+          <div class="order-items">
+            ${escapeHtml(
+              order.items
+            )}
+          </div>
+
+
+          <div class="order-bottom">
+
+            <div>
+
+              <div class="amount">
+                ${formatMoney(
+                  order.total
+                )}
+              </div>
+
+              <div class="portions">
+                Порций:
+                ${Number(
+                  order.portions
+                )}
+              </div>
+
+            </div>
+
+            ${action}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =====================================================
+       CANCEL CONFIRM
+       ===================================================== */
+
+    function cancelOrderConfirm(
+      row,
+      employee,
+      amount
+    ) {
+
+      const confirmed =
+        confirm(
+          'Отменить заказ?\n\n' +
+          employee +
+          '\n' +
+          'Сумма: ' +
+          formatMoney(
+            amount
+          ) +
+          '\n\n' +
+          'Сумма будет автоматически возвращена на депозит сотрудника.'
+        );
+
+
+      if (
+        !confirmed
+      ) {
+
+        return;
+
+      }
+
+
+      const card =
+        document.getElementById(
+          'order-' + row
+        );
+
+
+      if (
+        card
+      ) {
+
+        const button =
+          card.querySelector(
+            'button'
+          );
+
+
+        if (
+          button
+        ) {
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            'ОТМЕНЯЕМ…';
+
+        }
+
+      }
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(result) {
+
+            if (
+              result &&
+              result.success
+            ) {
+
+              loadOrders();
+
+
+              /*
+                Обновляем списки сотрудников,
+                чтобы после пополнения/отмены
+                данные были свежими.
+              */
+
+              loadEmployees();
+
+
+              alert(
+                'Заказ отменён.\n\n' +
+                'Возвращено: ' +
+                formatMoney(
+                  result.refunded
+                ) +
+                '\n' +
+                'Новый депозит: ' +
+                formatMoney(
+                  result.newDeposit
+                )
+              );
+
+            } else {
+
+              alert(
+                result &&
+                result.message
+                  ? result.message
+                  : 'Не удалось отменить заказ.'
+              );
+
+
+              loadOrders();
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            if (
+              isSessionError(
+                err
+              )
+            ) {
+
+              logout();
+
+              return;
+
+            }
+
+
+            alert(
+              err.message ||
+              'Ошибка отмены заказа.'
+            );
+
+
+            loadOrders();
+
+          }
+        )
+
+        .cancelOrder(
+          row,
+          cookToken
+        );
+
+    }
+
+
+    /* =====================================================
+       ADD DEPOSIT
+       ===================================================== */
+
+    function addDeposit() {
+
+      const employee =
+        document.getElementById(
+          'depositEmployee'
+        ).value;
+
+
+      const amount =
+        Number(
+          document.getElementById(
+            'depositAmount'
+          ).value
+        );
+
+
+      const result =
+        document.getElementById(
+          'depositResult'
+        );
+
+
+      if (
+        !employee
+      ) {
+
+        result.textContent =
+          'Выберите сотрудника.';
+
+        return;
+
+      }
+
+
+      if (
+        !amount ||
+        amount <= 0
+      ) {
+
+        result.textContent =
+          'Введите сумму больше 0.';
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          'Пополнить депозит?\n\n' +
+          employee +
+          '\n' +
+          'Сумма: ' +
+          formatMoney(
+            amount
+          )
+        );
+
+
+      if (
+        !confirmed
+      ) {
+
+        return;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          'depositButton'
+        );
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        'ОБНОВЛЕНИЕ…';
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(data) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'ПОПОЛНИТЬ';
+
+
+            if (
+              data &&
+              data.success
+            ) {
+
+              result.textContent =
+                'Готово. Новый депозит: ' +
+                formatMoney(
+                  data.newBalance
+                );
+
+
+              document.getElementById(
+                'depositAmount'
+              ).value =
+                '';
+
+
+              loadEmployees();
+
+            } else {
+
+              result.textContent =
+                data.message ||
+                'Ошибка.';
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'ПОПОЛНИТЬ';
+
+
+            if (
+              isSessionError(
+                err
+              )
+            ) {
+
+              logout();
+
+              return;
+
+            }
+
+
+            result.textContent =
+              err.message ||
+              'Ошибка.';
+
+          }
+        )
+
+        .cookAddDeposit(
+          employee,
+          amount,
+          cookToken
+        );
+
+    }
+
+
+    /* =====================================================
+       ADD CHARGE
+       ===================================================== */
+
+    function addCharge() {
+
+      const employee =
+        document.getElementById(
+          'chargeEmployee'
+        ).value;
+
+
+      const amount =
+        Number(
+          document.getElementById(
+            'chargeAmount'
+          ).value
+        );
+
+
+      const result =
+        document.getElementById(
+          'chargeResult'
+        );
+
+
+      if (
+        !employee
+      ) {
+
+        result.textContent =
+          'Выберите сотрудника.';
+
+        return;
+
+      }
+
+
+      if (
+        !amount ||
+        amount <= 0
+      ) {
+
+        result.textContent =
+          'Введите сумму больше 0.';
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          'Выполнить дополнительное списание?\n\n' +
+          employee +
+          '\n' +
+          'Сумма: ' +
+          formatMoney(
+            amount
+          )
+        );
+
+
+      if (
+        !confirmed
+      ) {
+
+        return;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          'chargeButton'
+        );
+
+
+      button.disabled =
+        true;
+
+      button.textContent =
+        'ОБНОВЛЕНИЕ…';
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          function(data) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'СПИСАТЬ';
+
+
+            if (
+              data &&
+              data.success
+            ) {
+
+              result.textContent =
+                'Готово. Новый депозит: ' +
+                formatMoney(
+                  data.newBalance
+                );
+
+
+              document.getElementById(
+                'chargeAmount'
+              ).value =
+                '';
+
+
+              loadEmployees();
+
+            } else {
+
+              result.textContent =
+                data.message ||
+                'Ошибка.';
+
+            }
+
+          }
+        )
+
+        .withFailureHandler(
+          function(err) {
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              'СПИСАТЬ';
+
+
+            if (
+              isSessionError(
+                err
+              )
+            ) {
+
+              logout();
+
+              return;
+
+            }
+
+
+            result.textContent =
+              err.message ||
+              'Ошибка.';
+
+          }
+        )
+
+        .cookAddCharge(
+          employee,
+          amount,
+          cookToken
+        );
+
+    }
+
+
+    /* =====================================================
+       HELPERS
+       ===================================================== */
+
+    function formatMoney(
+      value
+    ) {
+
+      return (
+        Number(
+          value
+        ) || 0
+      ).toLocaleString(
+        'ru-RU'
+      ) + ' ₽';
+
+    }
+
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value == null
+          ? ''
+          : value
+      )
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+        .replace(
+          /</g,
+          '&lt;'
+        )
+        .replace(
+          />/g,
+          '&gt;'
+        )
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+    function escapeJs(
+      value
+    ) {
+
+      return String(
+        value == null
+          ? ''
+          : value
+      )
+        .replace(
+          /\\/g,
+          '\\\\'
+        )
+        .replace(
+          /'/g,
+          "\\'"
+        )
+        .replace(
+          /\r/g,
+          '\\r'
+        )
+        .replace(
+          /\n/g,
+          '\\n'
+        );
+
+    }
+
+
+    function isSessionError(
+      err
+    ) {
+
+      return (
+        err &&
+        err.message &&
+        (
+          err.message.indexOf(
+            'Сессия повара'
+          ) !== -1
+          ||
+          err.message.indexOf(
+            'Нет доступа'
+          ) !== -1
+        )
+      );
+
+    }
+
+  </script>
+
+</body>
+
 </html>
